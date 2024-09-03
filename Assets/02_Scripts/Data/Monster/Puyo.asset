@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b557906dacf25846a3c6cc8e098a98e, type: 3}
-  m_Name: Swordman
+  m_Script: {fileID: 11500000, guid: acfc60c317674834b8ab33e30a754340, type: 3}
+  m_Name: Puyo
   m_EditorClassIdentifier: 
-  playerName: 
-  jop: 
-  level: 0
-  exp: 0
-  attack: 0
-  hp: 0
-  maxHp: 0
-  mp: 0
-  maxMp: 0
+  monsterName: "\uC2AC\uB77C\uC784"
+  jop: "\uD558\uAE09 \uBAAC\uC2A4\uD130"
+  attack: 10
+  hp: 10000
+  maxHp: 10000
+  mp: 1000
+  maxMp: 1000
+  level: 1
+  exp: 2000

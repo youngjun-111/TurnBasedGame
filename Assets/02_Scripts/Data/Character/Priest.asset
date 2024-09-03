@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b557906dacf25846a3c6cc8e098a98e, type: 3}
   m_Name: Priest
   m_EditorClassIdentifier: 
-  playerName: 
-  jop: 
-  level: 0
+  playerName: "\uB098\uD504\uB9AC\uC2A4\uD2B8"
+  jop: "\uD504\uB9AC\uC2A4\uD2B8"
+  level: 1
   exp: 0
-  attack: 0
-  hp: 0
-  maxHp: 0
-  mp: 0
-  maxMp: 0
+  attack: 200
+  hp: 10000
+  maxHp: 10000
+  mp: 20000
+  maxMp: 20000
