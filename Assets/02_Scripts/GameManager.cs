@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] status;
     public Text[] swordText;
     public Text[] priestText;
-    public Text[] withchText;
+    public Text[] witchText;
     //딕셔너리 Key 값, value 값 지정 Key는 GameObject, value는 string
 
     void Start()
@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
 
         swordText = status[0].GetComponentsInChildren<Text>();
         priestText = status[1].GetComponentsInChildren<Text>();
-        withchText = status[2].GetComponentsInChildren<Text>();
+        witchText = status[2].GetComponentsInChildren<Text>();
     }
     
     void Update()
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     void StatusShow()
     {
-        //검사
+        //검사 스테이터스
         if (d_Player.ContainsKey("검사"))
         {
             Player p1 = d_Player["검사"].GetComponent<Player>();
@@ -55,7 +55,8 @@ public class GameManager : MonoBehaviour
                 swordText[4].text = "MP : " + p1.pData.mp + " / " + p1.pData.maxMp;
             }
         }
-        //프리스트
+
+        //프리스트 스테이터스
         if (d_Player.ContainsKey("프리스트"))
         {
             Player p2 = d_Player["프리스트"].GetComponent<Player>();
@@ -68,17 +69,18 @@ public class GameManager : MonoBehaviour
                 priestText[4].text = "MP : " + p2.pData.mp + " / " + p2.pData.maxMp;
             }
         }
-        //마법사
+
+        //마법사 스테이터스
         if (d_Player.ContainsKey("마법사"))
         {
             Player p3 = d_Player["마법사"].GetComponent<Player>();
             if (p3 != null)
             {
-                withchText[0].text = "직업 : " + p3.pData.jop;
-                withchText[1].text = "레벨 : " + p3.pData.level;
-                withchText[2].text = "경험치 : " + p3.pData.exp;
-                withchText[3].text = "HP : " + p3.pData.hp + " / " + p3.pData.maxHp;
-                withchText[4].text = "MP : " + p3.pData.mp + " / " + p3.pData.maxMp;
+                witchText[0].text = "직업 : " + p3.pData.jop;
+                witchText[1].text = "레벨 : " + p3.pData.level;
+                witchText[2].text = "경험치 : " + p3.pData.exp;
+                witchText[3].text = "HP : " + p3.pData.hp + " / " + p3.pData.maxHp;
+                witchText[4].text = "MP : " + p3.pData.mp + " / " + p3.pData.maxMp;
             }
         }
     }
