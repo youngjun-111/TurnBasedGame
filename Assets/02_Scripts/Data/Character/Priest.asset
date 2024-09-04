@@ -16,8 +16,8 @@ MonoBehaviour:
   jop: "\uD504\uB9AC\uC2A4\uD2B8"
   level: 1
   exp: 0
-  attack: 200
-  hp: 10000
-  maxHp: 10000
-  mp: 20000
-  maxMp: 20000
+  attack: 2
+  hp: 100
+  maxHp: 100
+  mp: 200
+  maxMp: 200

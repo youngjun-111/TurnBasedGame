@@ -19,11 +19,12 @@ public class CoolTime
         //명령 실행
         //t가 10이라면 10초마다 실행
         //10초마다 coolTime은 0으로 초기화
+        //이 쿨타임은 인스턴스화 하여 상속해서 매개변수 t값을 적용 시켜 쿨타임을 흐르게 해야함.
         coolTime += Time.deltaTime;
 
         if(coolCnt + t <= Time.time)
         {
-            //현재시간 + 인자값인 t가 흘러간 시간을 초과하였을 경우
+            //현재시간 + 인자값인 t(10초로 설정)가 흘러간 시간을 초과하였을 경우
             //현재 시간을 다시 Time.time으로 초기화 하고
             coolCnt = Time.time;
             //쿨타임을 0 으로 초기화 시켜줘서 다시 흘러가게 해줬음

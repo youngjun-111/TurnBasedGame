@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterName: "\uC2AC\uB77C\uC784"
   jop: "\uD558\uAE09 \uBAAC\uC2A4\uD130"
-  attack: 10
-  hp: 10000
-  maxHp: 10000
-  mp: 1000
-  maxMp: 1000
+  attack: 25
+  hp: 100
+  maxHp: 100
+  mp: 10
+  maxMp: 10
   level: 1
-  exp: 2000
+  exp: 20

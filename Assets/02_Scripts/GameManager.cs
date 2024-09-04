@@ -5,30 +5,62 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    //싱글톤
     public static GameManager gm;
+
+    //딕셔너리 Key 값, value 값 지정 Key는 string, value는 GameObject
     public Dictionary<string, GameObject> d_Player = new Dictionary<string, GameObject>();
+    //몬스터는 리스트로 만들거임
+    public List<GameObject> monsterList = new List<GameObject>();
+    //몬스터 리스트에 담아줄 몬스터들의 배열
+    public GameObject[] monster;
 
-    private void Awake()
-    {
-        gm = this;
-    }
-
-    //하나의 스크립트로 여러개의 데이터를 관리 해주기 위한 작업 방법
+    //하나의 스크립트로 여러개의 데이터를 관리 해주기 위한 작업 방법중 하나인 딕셔너리
     //여러 캐릭터를 제어해야하니 각 캐릭터를 담아야 한다.(배열 or 리스트)
+    [Header("플레이어 스테이터스 변수")]
     public GameObject[] players;
     //담은 캐릭터의 data를 각 캐릭터의 해당 StatusPanel안에 있는 Status Text에 적용
     public GameObject[] status;
     public Text[] swordText;
     public Text[] priestText;
     public Text[] witchText;
-    //딕셔너리 Key 값, value 값 지정 Key는 GameObject, value는 string
+    
+    //쿨타임 클래스 인스턴스를 위한 변수
+    CoolTime ct;
+
+    //턴 쿨타임을 위한 변수
+    [Header("턴 변수")]
+    public Slider turn;
+    public Text turnText;
+    //실제 쿨타임
+    public float turnTime = 10;
+
+    //턴 설정 불 변수
+    //플레이어 턴
+    public bool playerTurn = true;
+    //몬스터 턴
+    public bool monsterTurn = false;
+    //현재 턴false : 플레이어턴 ture : 몬스터턴, 다른 클래스에서 판별할 현재턴 설정
+    public bool currTurn = false;
+    
+    private void Awake()
+    {
+        gm = this;
+        //쿨타임 클래스 인스턴스화
+        ct = new CoolTime();
+    }
 
     void Start()
     {
         status = GameObject.FindGameObjectsWithTag("Status");
+        //딕셔너리로 플레이어들을 담아줌
         d_Player.Add("검사", players[0]);
         d_Player.Add("프리스트", players[1]);
         d_Player.Add("마법사", players[2]);
+        //몬스터들을 담아줌
+        monsterList.Add(monster[0]);
+        monsterList.Add(monster[1]);
+        monsterList.Add(monster[2]);
 
         swordText = status[0].GetComponentsInChildren<Text>();
         priestText = status[1].GetComponentsInChildren<Text>();
@@ -37,7 +69,37 @@ public class GameManager : MonoBehaviour
     
     void Update()
     {
+        //지정해준 turn이라는 슬라이더 value 값에
+        //coolTime class함수 Timer를 호출하여
+        //turnTime값을 대입하여 시간이 흘러가게 함
+        turn.value = ct.Timer(turnTime);
+        //턴 구분 함수
+        Turn();
+        //플레이어 캐릭터들의 스테이터스 표시 함수
         StatusShow();
+    }
+
+    void Turn()
+    {
+        if(turn.value == 0)//슬라이더가 끝까지 도달했으면 다음 턴
+        {
+            playerTurn = !playerTurn;
+            currTurn = playerTurn;
+            if (playerTurn)
+            {
+                //플레이어 턴
+                turnText.text = "Player Turn";
+                monsterTurn = false;
+            }
+            else
+            {
+                //몬스터 턴
+                turnText.text = "Monster Turn";
+                playerTurn = false;
+            }
+        }
+        //현재 이렇게 하면 false true 값으로 나와 버림
+        Debug.Log("현재 턴 : " + currTurn);
     }
 
     void StatusShow()
