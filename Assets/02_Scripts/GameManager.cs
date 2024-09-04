@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
         if(turn.value == 0)//슬라이더가 끝까지 도달했으면 다음 턴
         {
             playerTurn = !playerTurn;
-            currTurn = playerTurn;
+            currTurn = !playerTurn;
             if (playerTurn)
             {
                 //플레이어 턴

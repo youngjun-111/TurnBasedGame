@@ -10,6 +10,10 @@ public class Player : MonoBehaviour
     GameObject[] monster;
 
     public bool back = false;
+    //다시 돌아왔을 때를 위한 불변수
+    public bool home = true;
+
+
     public Vector3 oriPos;
     Animator anim;
     Rigidbody2D rigi;
@@ -23,7 +27,17 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        
+        if(back == true)
+        {
+            rigi.MovePosition(Vector3.Lerp(transform.position, oriPos, 20 * Time.deltaTime));
+            //현재 돌아오는데 위치가 현재 위치에서 0.5정도 왔다면 초기위치로 해주고
+            //집(현재 위치)이라고 명시 해줌
+            if (Vector3.Distance(transform.position, oriPos) <= 0.5f)
+            {
+                transform.position = oriPos;
+                home = true;
+            }
+        }
     }
 
     public void NormalAttack()
@@ -48,6 +62,8 @@ public class Player : MonoBehaviour
             //Lerp값을 이용하여 속도를 설정해줄거임
             if(monster[r] != null)
             {
+                //원위치 아님 일 때 버튼이 눌려 추가적으로 코루틴이 호출 안되게
+                home = false;
                 //랜덤 타깃이 된 몬스터를 향해 이동
                 rigi.MovePosition(Vector3.Lerp(transform.position, monster[r].transform.position, 20 * Time.deltaTime));
                 //몬스터와의 거리가 0.5이하면  공격 시작
